@@ -5,16 +5,10 @@
      (b) projetar as 20+ variáveis-chave em uma visão “top20” para análises
 
    ideia principal:
-     - primeiro descubro quais colunas são IGUAIS nas 3 tabelas
-       (isso evita erro de UNION com colunas diferentes).
-     - depois crio a VIEW unificada usando SÓ as colunas comuns
+     descobrir quais colunas são IGUAIS nas 3 tabelas
+     criar a VIEW unificada usando SÓ as colunas comuns
        (e ainda adiciono uma coluna “referencia” com a data do mês).
    ========================================================================== */
-
-
-/* ---------------------------------------------------------------------------
-   (passo opcional) conferir rapidamente a ordem/nomes das colunas de cada mês
-   — uso quando quero checar se as colunas batem
 --------------------------------------------------------------------------- */
 -- SELECT column_name, ordinal_position
 -- FROM information_schema.columns
@@ -33,8 +27,8 @@
 
 
 /* ---------------------------------------------------------------------------
-   [PASSO 1] ver a “interseção” de colunas existentes nas 3 tabelas
-   - eu gero uma string “col1, col2, col3, …” já formatada
+ ver a “interseção” de colunas existentes nas 3 tabelas
+ gero uma string “col1, col2, col3, …” já formatada
    - OBS: a ordem segue a do mês 05/2020 (padronizo por ele)
 --------------------------------------------------------------------------- */
 WITH cols_0520 AS (
@@ -65,8 +59,8 @@ FROM cols_comuns;
 
 
 /* ---------------------------------------------------------------------------
-   [PASSO 2] criar/atualizar a VIEW unificada usando SQL dinâmica
-   - aqui eu deixo o banco montar a lista de colunas e criar a view
+ criar/atualizar a VIEW unificada usando SQL dinâmica
+  deixo o banco montar a lista de colunas e criar a view
    - nome da view: public.pnad_covid_2020_auto
    - se amanhã eu recarregar as tabelas com colunas diferentes,
      basta executar de novo e a view se ajusta às colunas comuns.
@@ -121,8 +115,8 @@ ORDER BY referencia;
 
 
 /* ---------------------------------------------------------------------------
-   [PASSO 3] criar/atualizar a VIEW com as variáveis de interesse (“top20”)
-   - objetivo: facilitar a análise (tipos coerentes e 1 variável derivada)
+ criar/atualizar a VIEW com as variáveis de interesse (“top20”)
+ facilitar a análise (tipos coerentes e 1 variável derivada)
    - uso a view unificada como fonte
 --------------------------------------------------------------------------- */
 CREATE OR REPLACE VIEW public.pnad_covid_top20 AS
@@ -163,6 +157,7 @@ SELECT
   )
   THEN 1 ELSE 2 END AS tem_algum_sintoma
 FROM public.pnad_covid_2020_auto;
+
 
 
 
