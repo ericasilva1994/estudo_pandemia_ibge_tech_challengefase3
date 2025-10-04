@@ -1,31 +1,14 @@
 /* ===========================================================================
    01_views.sql
    objetivo: criar visões (views) para:
-     (a) unificar os 3 meses da PNAD COVID em 1 visão só
-     (b) projetar as 20+ variáveis-chave em uma visão “top20” para análises
+     unificar os 3 meses da PNAD COVID em 1 visão só
+    projetar as 20+ variáveis-chave em uma visão “top20” para análises
 
    ideia principal:
      descobrir quais colunas são IGUAIS nas 3 tabelas
      criar a VIEW unificada usando SÓ as colunas comuns
        (e ainda adiciono uma coluna “referencia” com a data do mês).
    ========================================================================== */
---------------------------------------------------------------------------- */
--- SELECT column_name, ordinal_position
--- FROM information_schema.columns
--- WHERE table_schema='public' AND table_name='pnad_covid_052020'
--- ORDER BY ordinal_position;
-
--- SELECT column_name, ordinal_position
--- FROM information_schema.columns
--- WHERE table_schema='public' AND table_name='pnad_covid_082020'
--- ORDER BY ordinal_position;
-
--- SELECT column_name, ordinal_position
--- FROM information_schema.columns
--- WHERE table_schema='public' AND table_name='pnad_covid_112020'
--- ORDER BY ordinal_position;
-
-
 /* ---------------------------------------------------------------------------
  ver a “interseção” de colunas existentes nas 3 tabelas
  gero uma string “col1, col2, col3, …” já formatada
@@ -157,6 +140,7 @@ SELECT
   )
   THEN 1 ELSE 2 END AS tem_algum_sintoma
 FROM public.pnad_covid_2020_auto;
+
 
 
 
