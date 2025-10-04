@@ -4,7 +4,7 @@
 # Objetivo:
 # 1) Ler os CSVs originais
 # 2) Criar tabelas de staging (_new) no PostgreSQL
-# 3) Inserir dados usando COPY (muito mais rápido que INSERT)
+# 3) Inserir dados usando COPY 
 # 4) Promover staging -> oficial (swap) e manter backup (_old)
 # ============================================================
 
@@ -211,3 +211,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
