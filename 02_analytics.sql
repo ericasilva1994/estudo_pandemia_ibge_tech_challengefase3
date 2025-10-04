@@ -1,7 +1,7 @@
 -- ==========================================
--- 02_analytics.sql  (versão corrigida)
+-- 02_analytics.sql  
 -- ==========================================
--- Anotações pessoais:
+
 -- • Este arquivo só cria VIEWS analíticas (não altera tabelas).
 -- • Tudo parte da view public.pnad_covid_top20 criada no 01_views.sql.
 -- • Sempre transformo respostas 1/2 em 0/1 com (NULLIF(col::text,'')::int = 1)::int.
@@ -201,13 +201,4 @@ SELECT
 FROM base
 GROUP BY referencia
 ORDER BY referencia;
-
--- ===================
--- Checks rápidos
--- ===================
--- SELECT * FROM public.pnad_covid_painel_mensal;
--- SELECT * FROM public.pnad_covid_painel_uf WHERE uf='SP';
--- SELECT * FROM public.pnad_covid_painel_faixa WHERE faixa='60+';
--- SELECT * FROM public.pnad_covid_correlacoes;
--- SELECT * FROM public.pnad_covid_correlacoes_mes ORDER BY referencia;
 
