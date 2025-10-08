@@ -2,7 +2,7 @@
 # ---------------------------------------------
 # Notas:
 # - Apenas LEITURA do banco.
-# - Gráficos claros p/ público leigo, todos em % quando aplicável.
+# - Gráficos claros em % quando aplicável.
 # - “Bottom 10” -> “10 MENORES”; “Top 10” -> “10 MAIORES”.
 # ---------------------------------------------
 
@@ -389,5 +389,6 @@ for lab, grupo in df_uf.groupby("ref_str"):
     ax.set_ylim(0, nice_axis_limit(g["pct_internou_busca"]))
     ax.grid(True, alpha=.3)
     savefig(f"S2_disp_sintoma_vs_internou_{lab}"); plt.close()
+
 
 print("\nPronto! Gráficos salvos na pasta ./figs")
