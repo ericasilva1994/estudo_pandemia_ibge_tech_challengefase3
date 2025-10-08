@@ -39,8 +39,7 @@ ORDER BY u.prop_falta_ar DESC
 LIMIT 10;
 
 -- =============================================================
--- (Q4) Série temporal para uma UF (ex.: SP) vs BRASIL
--- truque: BRASIL = média simples das UFs (boa o bastante p/ comparar tendência)
+-- (Q4) Série temporal para uma UF 
 -- =============================================================
 WITH br AS (
   SELECT
@@ -60,7 +59,6 @@ ORDER BY u.referencia;
 
 -- =============================================================
 -- (Q5) Por faixa etária: internou ENTRE os que buscaram (risco condicional)
--- dica: filtrar faixas específicas quando quiser (ex.: '60+')
 -- =============================================================
 SELECT
   referencia,
@@ -71,7 +69,7 @@ ORDER BY referencia, faixa;
 
 -- =============================================================
 -- (Q6) Correlações "gerais" com internação (1=sim, 0=não)
--- leitura: quanto mais perto de 1 (positivo) | -1 (negativo), mais forte a associação
+-- quanto mais perto de 1 (positivo) | -1 (negativo), mais forte a associação
 -- =============================================================
 SELECT
   corr_falta_ar,
@@ -84,7 +82,7 @@ FROM public.pnad_covid_correlacoes;
 
 -- =============================================================
 -- (Q7) Correlações mês a mês (ex.: falta de ar e dor no peito)
--- leitura: ver se a força da associação muda com o tempo
+-- ver se a força da associação muda com o tempo
 -- =============================================================
 SELECT
   referencia,
@@ -92,3 +90,4 @@ SELECT
   corr_dor_peito
 FROM public.pnad_covid_correlacoes_mes
 ORDER BY referencia;
+
