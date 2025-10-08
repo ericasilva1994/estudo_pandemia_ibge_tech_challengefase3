@@ -51,7 +51,7 @@ FROM cols_comuns;
 DO $$
 DECLARE
   collist text;   -- onde vou guardar “col1, col2, col3, …”
-  sqlview text;   -- aqui vai o CREATE VIEW completo
+  sqlview text;   
 BEGIN
   -- 2.1) montar a lista de colunas comuns NA ORDEM do 05/2020
   SELECT string_agg(format('%I', c0520.column_name), ', ' ORDER BY c0520.ordinal_position)
@@ -140,6 +140,7 @@ SELECT
   )
   THEN 1 ELSE 2 END AS tem_algum_sintoma
 FROM public.pnad_covid_2020_auto;
+
 
 
 
